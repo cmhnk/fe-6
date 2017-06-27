@@ -1,0 +1,72 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  font-family: 'Open Sans';
+}
+.one {
+  grid-column: 1 / 2;
+  grid-row: 1 ;
+  font-family: 'Bubbler One';
+}
+.two {
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.five {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  background-color: #03A9F4;
+}
+.three {
+  padding: 22px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 6;
+  background-color: #03A9F4;
+}
+.four {
+  grid-column: 2 / 4;
+  grid-row: 2 / 6;
+  background-color: #03A9F4;
+  padding: 70px;
+}
+.center {
+  text-align: center;
+}
+label {
+  font-size: 14px;
+}
+
+p {
+  text-align: justify;
+}
+
+input[type=text], select, textarea {
+    width: 90%;
+    padding: 5px;
+    margin: 30px;
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #45a049;
+}

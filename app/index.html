@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>nag me</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bubbler+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./app.css">
+  </head>
+  <body>
+    <div class='wrapper'>
+      <div class='one'>
+        <h1 class='center'> The Mom Simulator </h1>
+        <h3 class='center'> "Because I said so!" </h3>
+      </div>
+      <div class="two">
+      <p> Homesick? Missing Mom? Fret no more! </p>
+      <p> The <b>Mom Simulator</b> will make you feel like you're right back in your childhood home! Speaking of which, your room needs cleaning. </p>
+
+      </div>
+      <div class="three">
+        <form class="nag-form">
+
+          <label for="fname">Enter the name your family calls you:</label>
+          <input class="nag-string" type="text" id="fname" name="firstname">
+
+          <label for="brothers">How many brothers do you have?</label>
+          <select class="nag" id="brothers" name="brothers">
+            <option value=0>0</option>
+            <option value=1>1</option>
+            <option value=2>2 or more</option>
+          </select>
+
+          <label for="sisters">How many sisters do you have?</label>
+          <select class="nag" id="sisters" name="sisters">
+            <option value=0>0</option>
+            <option value=1>1</option>
+            <option value=2>2 or more</option>
+          </select>
+
+          <label for="bed_time">Approximately what time did you go to bed last night?</label>
+          <select class="nag" id="bed_time" name="bed_time">
+            <option value=8>8:00 pm</option>
+            <option value=8.5>8:30 pm</option>
+            <option value=9>9:00 pm</option>
+            <option value=9.5>9:30 pm</option>
+            <option value=10>10:00 pm</option>
+            <option value=10.5>10:30 pm</option>
+            <option value=11>11:00 pm</option>
+            <option value=11.5>11:30 pm</option>
+            <option value=12>12:00 am</option>
+            <option value=12.5>12:30 am</option>
+            <option value=1>1:00 am</option>
+            <option value=1.5>1:30 am</option>
+            <option value=2>2:00 am</option>
+            <option value=.52>2:30 am</option>
+            <option value=3>3:00 am</option>
+          </select>
+
+          <label for="wake_time">When did you wake up this morning?</label>
+          <select class="nag" id="wake_time" name="wake_time">
+            <option value=4>4:00 am</option>
+            <option value=4.5>4:30 am</option>
+            <option value=5>5:00 am</option>
+            <option value=5.5>5:30 am</option>
+            <option value=6>6:00 am</option>
+            <option value=6.5>6:30 am</option>
+            <option value=7>7:00 am</option>
+            <option value=7.5>7:30 am</option>
+            <option value=8>8:00 am</option>
+            <option value=8.5>8:30 am</option>
+            <option value=9>9:00 am</option>
+            <option value=9.5>9:30 am</option>
+            <option value=10>10:00 am</option>
+            <option value=10.5>10:30 am</option>
+            <option value=11>11:00 am</option>
+            <option value=11.5>11:30 am</option>
+            <option value=12>12:00 am</option>
+          </select>
+
+          <label for="fruits">How many servings of fruits have you eaten today?</label>
+          <select class="nag" id="fruits" name="fruits">
+            <option value=0>0</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10 or more</option>
+          </select>
+
+          <label for="veggies">How many servings of vegetables have you eaten today?</label>
+          <select class="nag" id="veggies" name="veggies">
+            <option value=0>0</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10 or more</option>
+          </select>
+
+          <input type="submit" id="submit" value="Submit">
+
+        </form>
+      </div>
+      <div class="four">MOM SAYS: </div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
