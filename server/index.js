@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
@@ -8,6 +9,11 @@ const config = require('../config/webpack.config.js');
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
+const bodyParser = require('body-parser'); // for reading JSON in requests.
+const https = require('https');
+const rp = require('request-promise');
+
+
 
 if (isDeveloping) {
   const compiler = webpack(config);
@@ -26,50 +32,46 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '/../dist/index.html')));
     res.end();
   });
 } else {
   app.use(express.static(path.join(__dirname, '/../dist')));
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
-    import './styles/base.scss';
-
-    import $ from 'jquery';
-    $(document).ready(function() {
-      var $form = $('.nag-form');
-      console.log('hello');
-
-      $form.submit( function(event){
-        alert("Thank you for submitting your response! The robots are working...");
-        event.preventDefault();
-        console.log('yo!');
-        var data = {};
-        $(".nag").each(function() {
-          data[$(this).attr("name")] = Number($(this).val());
-        });
-        data["firstname"] = $(".nag-string").val();
-
-        console.log(data);
-
-        var wordsmith = require('wordsmith-node-sdk')('process.env.WORDSMITH_KEY', 'Corinne');
-        console.log(wordsmith);
-
-        wordsmith.projects.find('nag-simulator')
-          .then(function(project) {
-            return project.templates.find('nagging-parent');
-          })
-          .then(function(template) {
-            return template.generate(data);
-          })
-          .then(function(content) {
-            $( ".four " ).text(content)
-          })
-      });
-    });
   });
 }
+app.use(bodyParser.json());
+app.post('/anything-at-all', (req, res) => {
+  var url = `https://api.automatedinsights.com/v1/projects/nag-simulator/templates/nagging-parent/outputs?access_token=${process.env.WORDSMITH_KEY}`
+    var options = {
+      method: 'POST',
+      uri: url,
+      body: {
+        data: req.body
+      },
+      headers: {
+        'User-Agent': 'testing this'
+      },
+      json: true // Automatically stringifies the body to JSON
+    };
+
+    // Hit website using request-promises
+    rp(options)
+      .then(function(resp) {
+        console.log(resp);
+        res.send({
+          resp: resp
+        });
+      })
+      .catch(function(err) {
+        console.log(err);
+        res.send({
+          resp: err
+        });
+      });
+});
 
 app.listen(port, (err) => {
   if (err) {

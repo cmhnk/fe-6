@@ -15,20 +15,28 @@ $(document).ready(function() {
     });
     data["firstname"] = $(".nag-string").val();
 
+    var more = {"data": data};
     console.log(data);
 
-    var wordsmith = require('wordsmith-node-sdk')('process.env.WORDSMITH_KEY', 'Corinne');
-    console.log(wordsmith);
+    $.ajax({
+      method: 'POST',
+      url: '/anything-at-all',
+      data: data,
+      success: function(resp) {
+        console.log(resp);
+        console.log(data["bed_time"]);
+      }
+    })
 
-    wordsmith.projects.find('nag-simulator')
-      .then(function(project) {
-        return project.templates.find('nagging-parent');
-      })
-      .then(function(template) {
-        return template.generate(data);
-      })
-      .then(function(content) {
-        $( ".four " ).text(content)
-      })
+    // wordsmith.projects.find('nag-simulator')
+    //   .then(function(project) {
+    //     return project.templates.find('nagging-parent');
+    //   })
+    //   .then(function(template) {
+    //     return template.generate(data);
+    //   })
+    //   .then(function(content) {
+    //     $( ".four " ).text(content)
+    //   })
   });
 });
