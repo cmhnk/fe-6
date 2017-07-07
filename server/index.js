@@ -12,7 +12,7 @@ const app = express();
 const bodyParser = require('body-parser'); // for reading JSON in requests.
 const https = require('https');
 const rp = require('request-promise');
-
+app.use(bodyParser.json());
 
 
 if (isDeveloping) {
@@ -42,7 +42,7 @@ if (isDeveloping) {
     res.sendFile(path.join(__dirname, 'index.html'));
   });
 }
-app.use(bodyParser.json());
+
 app.post('/anything-at-all', (req, res) => {
   var url = `https://api.automatedinsights.com/v1/projects/nag-simulator/templates/nagging-parent/outputs?access_token=${process.env.WORDSMITH_KEY}`
     var options = {
@@ -57,16 +57,20 @@ app.post('/anything-at-all', (req, res) => {
       json: true // Automatically stringifies the body to JSON
     };
 
+// console.log("Server side options:", options.body);
+console.log("This is the req body:", req.body);
+// debugger;
+
     // Hit website using request-promises
     rp(options)
       .then(function(resp) {
-        console.log(resp);
+        // console.log(resp);
         res.send({
           resp: resp
         });
       })
       .catch(function(err) {
-        console.log(err);
+        // console.log(err);
         res.send({
           resp: err
         });
@@ -76,8 +80,8 @@ app.post('/anything-at-all', (req, res) => {
 app.listen(port, (err) => {
   if (err) {
     // eslint-disable-next-line no-console
-    console.log(err);
+    // console.log(err);
   }
   // eslint-disable-next-line no-console
-  console.info(`Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+  // console.info(`Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
 });

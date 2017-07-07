@@ -6,7 +6,7 @@ $(document).ready(function() {
   console.log('hello');
 
   $form.submit( function(event){
-    alert("Thank you for submitting your response! The robots are working...");
+    // alert("Thank you for submitting your response! The robots are working...");
     event.preventDefault();
     console.log('yo!');
     var data = {};
@@ -16,15 +16,20 @@ $(document).ready(function() {
     data["firstname"] = $(".nag-string").val();
 
     var more = {"data": data};
-    console.log(data);
+    console.log(more);
 
     $.ajax({
       method: 'POST',
       url: '/anything-at-all',
-      data: data,
+      data: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // contentType: "application/json; charset=utf-8",
+      // dataType: "json",
       success: function(resp) {
+        $( ".four " ).text(resp.resp.data.content);
         console.log(resp);
-        console.log(data["bed_time"]);
       }
     })
 
